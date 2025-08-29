@@ -1,0 +1,154 @@
+
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import { useRoute } from "@react-navigation/native";
+
+interface Props {
+  user: any;
+  openLogin: () => void;
+  openPost: () => void;
+}
+
+const BottomNav: React.FC<Props> = ({ user, openLogin, openPost }) => {
+  const router = useRouter();
+  const route = useRoute();
+
+  const handleProtectedRoute = (screen: string) => {
+    if (!user) {
+      openLogin();
+    } else {
+      router.push(screen);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* Home */}
+      <TouchableOpacity
+        style={styles.navItem}
+        onPress={() => router.push("/")}
+      >
+        <Ionicons
+          name="home-outline"
+          size={26}
+          color={route.name === "Home" ? "#fe6f61" : "#666"}
+        />
+        <Text
+          style={[
+            styles.label,
+            route.name === "Home" && { color: "#fe6f61" },
+          ]}
+        >
+          Home
+        </Text>
+      </TouchableOpacity>
+
+      {/* Category */}
+      <TouchableOpacity
+        style={styles.navItem}
+        onPress={() => router.push("/category")}
+      >
+        <Ionicons
+          name="apps-outline"
+          size={26}
+          color={route.name === "Category" ? "#fe6f61" : "#666"}
+        />
+        <Text
+          style={[
+            styles.label,
+            route.name === "Category" && { color: "#fe6f61" },
+          ]}
+        >
+          Category
+        </Text>
+      </TouchableOpacity>
+
+      {/* Post Button */}
+      <TouchableOpacity style={styles.postWrapper} onPress={openPost}>
+        <View style={styles.postGlow}>
+          <Ionicons name="add-circle" size={48} color="#fe6f61" />
+        </View>
+      </TouchableOpacity>
+
+      {/* Chat → Lobby page */}
+      <TouchableOpacity
+        style={styles.navItem}
+        onPress={() => router.push("/chat/lobby")}
+      >
+        <Ionicons
+          name="chatbubble-ellipses-outline"
+          size={26}
+          color={route.name === "Lobby" ? "#fe6f61" : "#666"}
+        />
+        <Text
+          style={[
+            styles.label,
+            route.name === "Lobby" && { color: "#fe6f61" },
+          ]}
+        >
+          Chat
+        </Text>
+      </TouchableOpacity>
+
+      {/* Account */}
+      <TouchableOpacity
+        style={styles.navItem}
+        onPress={() => handleProtectedRoute("/account/account")}
+      >
+        <Ionicons
+          name="person-outline"
+          size={26}
+          color={route.name === "Account" ? "#fe6f61" : "#666"}
+        />
+        <Text
+          style={[
+            styles.label,
+            route.name === "Account" && { color: "#fe6f61" },
+          ]}
+        >
+          Account
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    height: 70,
+    backgroundColor: "#fff",
+    borderTopWidth: 1,
+    borderTopColor: "#ddd",
+    elevation: 8,
+  },
+  navItem: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  label: {
+    fontSize: 12,
+    color: "#666",
+    marginTop: 2,
+  },
+  postWrapper: {
+    position: "relative",
+    marginTop: -20,
+  },
+  postGlow: {
+    borderRadius: 40,
+    backgroundColor: "white",
+    padding: 4,
+    elevation: 6,
+    shadowColor: "#fe6f61",
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 0 },
+  },
+});
+
+export default BottomNav;

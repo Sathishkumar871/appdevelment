@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1016113800497",
+    "project_id": "alert-sol-465004-s9",
+    "storage_bucket": "alert-sol-465004-s9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016113800497:android:36d3cc35b64a860e443c10",
+        "android_client_info": {
+          "package_name": "com.atozservo.services"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAroTsyretPeF2dKTZQYVq-r2NVTAc3YYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

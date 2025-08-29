@@ -1,0 +1,96 @@
+// buttons.tsx
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import { MotiView } from 'moti'; 
+
+// --- ServiceButton Component ---
+type ButtonProps = {
+  label: string;
+  icon: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
+  color: string;
+  onPress?: () => void;
+};
+
+const ServiceButton = ({ label, icon, color, onPress }: ButtonProps) => (
+  <TouchableOpacity style={styles.button} onPress={onPress} activeOpacity={0.8}>
+    <MotiView
+      from={{ scale: 0.9, opacity: 0.6 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: 'timing', duration: 400 }}
+      style={[styles.iconContainer, { backgroundColor: color }]}
+    >
+      <MaterialCommunityIcons name={icon} size={28} color="white" />
+    </MotiView>
+    <Text style={styles.buttonLabel}>{label}</Text>
+  </TouchableOpacity>
+);
+
+// --- Buttons Component ---
+const Buttons = () => {
+  const router = useRouter();
+
+  const handleNavigation = (label: string) => {
+    if (label === 'Games') {
+      router.push('./battale');
+    } else if (label === 'Laundry') {
+      router.push('/money/moneyassts'); 
+    } else if (label === 'Travel') {
+      router.push('/Travel');   
+    } else if (label === 'Food') {
+      router.push('/food/foodpage');  
+    } else if (label== 'grocary'){
+     router.push('/grocary/grocary');
+    }
+    else {
+      console.log(`${label} clicked`);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scrollView}
+      >
+        <ServiceButton label="Food" icon="food-turkey" color="#E74C3C" onPress={() => handleNavigation('Food')} />
+        <ServiceButton label="grocary" icon="face-agent" color="#3498DB" onPress={() => handleNavigation('grocary')} />
+        <ServiceButton label="Asset Loans" icon="hand-coin" color="#9B59B6" onPress={() => handleNavigation('Laundry')} />
+        <ServiceButton label="Games" icon="gamepad-variant" color="#2ECC71" onPress={() => handleNavigation('Games')} />
+        <ServiceButton label="Travel" icon="airplane" color="#F39C12" onPress={() => handleNavigation('Travel')} />
+        <ServiceButton label="Earning" icon="currency-usd" color="#1ABC9C" onPress={() => handleNavigation('Earning')} />
+      </ScrollView>
+    </View>
+  );
+};
+
+// --- Styles ---
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    borderRadius: 15,
+    paddingVertical: 15,
+    marginBottom: 15,
+    marginHorizontal: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 3,
+  },
+  scrollView: { paddingHorizontal: 15 },
+  button: { alignItems: 'center', marginRight: 25 },
+  iconContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  buttonLabel: { fontSize: 13, fontWeight: '600', color: '#333' },
+});
+
+export default Buttons;

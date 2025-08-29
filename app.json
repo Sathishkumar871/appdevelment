@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "MyMobileApp",
+    "slug": "MyMobileApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "mymobileapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.MyMobileApp"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyAroTsyretPeF2dKTZQYVq-r2NVTAc3YYM",
+          "authDomain": "alert-sol-465004-s9.firebaseapp.com",
+          "projectId": "alert-sol-465004-s9",
+          "storageBucket": "alert-sol-465004-s9.appspot.com",
+          "messagingSenderId": "1016113800497",
+          "appId": "1:1016113800497:web:6513364a2a1b9485b0d01d",
+          "measurementId": "G-F0P43F5S5V"
+        }
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "firebaseConfig": {
+        "apiKey": "AIzaSyAroTsyretPeF2dKTZQYVq-r2NVTAc3YYM",
+        "authDomain": "alert-sol-465004-s9.firebaseapp.com",
+        "projectId": "alert-sol-465004-s9",
+        "storageBucket": "alert-sol-465004-s9.appspot.com",
+        "messagingSenderId": "1016113800497",
+        "appId": "1:1016113800497:android:36d3cc35b64a860e443c10"
+      }
+    }
+  }
+}

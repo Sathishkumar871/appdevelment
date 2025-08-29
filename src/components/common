@@ -1,0 +1,71 @@
+// Home.tsx
+
+import React, { useState } from "react";
+import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import BottomNav from "./bottom";
+import SearchBar from "./SearchBar";
+import Scrolling from "./scrolling";
+import Buttons from "./buttons";
+
+const Home = () => {
+  // Let's assume a user is logged in for now, so navigation works
+  const [user, setUser] = useState<any>({ name: "Dummy User" });
+
+  const openLogin = () => {
+    // We will keep this function for now, but it won't be called
+    console.log("Open Login Modal");
+  };
+
+  const openPost = () => {
+    console.log("Open Post Modal");
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <SearchBar />
+      </View>
+
+      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+        <Scrolling />
+        <Buttons />
+      </ScrollView>
+
+      <View style={styles.bottom}>
+        {/*
+          We will pass a placeholder function instead of `openLogin`.
+          This will prevent the BottomNav component from calling it.
+        */}
+        <BottomNav user={user} openLogin={() => {}} openPost={openPost} />
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+  },
+  header: {
+    height: 120,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 20,
+    borderBottomLeftRadius: 22,
+    borderBottomRightRadius: 22,
+    backgroundColor: "#fe6f61",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  bottom: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+  },
+});
+
+export default Home;
